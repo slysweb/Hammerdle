@@ -2,6 +2,7 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "hammerdle",
   "main": "src/index.js",
+  "workers_dev": true,
   "compatibility_date": "2026-11-21",
   "assets": {
     "directory": "./site",
