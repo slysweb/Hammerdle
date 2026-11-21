@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "hammerdle",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-21",
+  "assets": {
+    "directory": "./site",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": {
+    "enabled": true,
+    "traces": {
+      "enabled": true
+    }
+  },
+  "routes": [
+    { "pattern": "hammerdle.com", "custom_domain": true },
+    { "pattern": "www.hammerdle.com", "custom_domain": true }
+  ]
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hammerdle</title>
+  <meta name="description" content="A daily price-guessing game. One historical sale, six tries.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css?v=2">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <button class="icon-btn" id="help-btn" type="button" aria-label="How to play">?</button>
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+          <g transform="rotate(-38 32 32)">
+            <rect x="27" y="8" width="10" height="30" rx="3" fill="#8d5a32"/>
+            <rect x="8" y="34" width="48" height="16" rx="3" fill="#d09a55" stroke="#6b3e1f" stroke-width="2"/>
+            <rect x="14" y="40" width="36" height="2.5" fill="#6b3e1f" opacity="0.35"/>
+          </g>
+        </svg>
+        <div class="wordmark">HAMMER<span>DLE</span></div>
+      </div>
+      <button class="icon-btn" id="stats-btn" type="button" aria-label="Statistics">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="12" width="4" height="9" rx="1"/>
+          <rect x="10" y="7" width="4" height="14" rx="1"/>
+          <rect x="17" y="3" width="4" height="18" rx="1"/>
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <p class="status" id="status" hidden></p>
+      <article class="card" id="card" hidden>
+        <div class="frame">
+          <img id="photo" alt="">
+        </div>
+        <p class="note" id="note" hidden></p>
+        <h1 id="title"></h1>
+        <p class="meta" id="meta"></p>
+        <p class="prompt" id="prompt"></p>
+        <p class="context" id="context"></p>
+        <p class="credit" id="credit"></p>
+      </article>
+
+      <p class="counter" id="counter">GUESS 1 / 6</p>
+      <div class="rows" id="rows" aria-live="polite"></div>
+
+      <div class="units" id="units" role="group" aria-label="Price unit">
+        <button type="button" data-unit="1">dollars</button>
+        <button type="button" data-unit="1000">thousand</button>
+        <button type="button" data-unit="1000000" class="on" aria-pressed="true">million</button>
+      </div>
+      <form class="guess-form" id="form">
+        <label class="field">
+          <span id="prefix">$</span>
+          <input id="amount" inputmode="decimal" autocomplete="off" placeholder="15" aria-label="Price guess">
+        </label>
+        <button class="submit" type="submit">Guess</button>
+      </form>
+      <p class="preview" id="preview"></p>
+      <p class="next" id="next"></p>
+    </main>
+
+    <footer>
+      <p>Hammerdle #<span id="number">–</span> · Historical sale prices in US dollars</p>
+    </footer>
+  </div>
+
+  <dialog id="help">
+    <form method="dialog">
+      <h2>How to play</h2>
+      <p>Guess the historical sale price in six tries. A new item every day.</p>
+      <p>You see the picture, the name, and the year. Land within 5% of the price and you win.</p>
+      <div class="example far"><span>$10 ↑</span><span>More than 25% low</span></div>
+      <div class="example close"><span>$18 ↓</span><span>High, but within 25%</span></div>
+      <div class="example win"><span>$16 ✓</span><span>Within 5%. You win.</span></div>
+      <p class="fine">↑ means the real price is higher. ↓ means it is lower. Pick a unit: 15 million is $15,000,000. Most prices are in the millions.</p>
+      <button class="submit" value="close">Play</button>
+    </form>
+  </dialog>
+
+  <dialog id="stats">
+    <form method="dialog">
+      <h2>Statistics</h2>
+      <div class="stat-grid">
+        <div><strong id="stat-played">0</strong><span>Played</span></div>
+        <div><strong id="stat-win">0</strong><span>Win %</span></div>
+        <div><strong id="stat-streak">0</strong><span>Streak</span></div>
+        <div><strong id="stat-max">0</strong><span>Max streak</span></div>
+      </div>
+      <h3>Guess distribution</h3>
+      <div id="dist"></div>
+      <button class="submit" value="close">Close</button>
+    </form>
+  </dialog>
+
+  <dialog id="result">
+    <form method="dialog">
+      <h2 id="result-title"></h2>
+      <p id="result-price"></p>
+      <p id="result-detail"></p>
+      <div class="result-actions">
+        <button class="submit" id="share" type="button">Share</button>
+        <button class="ghost" value="close">Close</button>
+      </div>
+      <p class="fine" id="copied" hidden>Copied.</p>
+    </form>
+  </dialog>
+
+  <script src="/app.js?v=2" type="module"></script>
+</body>
+</html>

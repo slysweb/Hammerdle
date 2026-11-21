@@ -1,0 +1,7 @@
+node_modules/
+.wrangler/
+site/
+src/puzzles.json
+scripts/cache/
+scripts/__pycache__/
+data/images/_test_rijks.jpg

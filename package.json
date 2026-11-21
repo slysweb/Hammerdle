@@ -1,0 +1,15 @@
+{
+  "name": "hammerdle",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "python scripts/prepare_site.py",
+    "dev": "python scripts/prepare_site.py && wrangler dev",
+    "test": "node --test",
+    "deploy": "python scripts/prepare_site.py && wrangler deploy",
+    "check": "python scripts/prepare_site.py && wrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "wrangler": "^4.50.0"
+  }
+}
